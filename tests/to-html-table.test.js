@@ -7,21 +7,10 @@ import toHtmlTable from '../lib/to-html-table';
 describe(toHtmlTable, () => {
   it('should return empty table for empty table or invalid nodes', () => {
     expect(toHtmlTable(td('table'))).toEqual(toHtml(h('table')));
+    expect(toHtmlTable(h('invalid node'))).toEqual(toHtml(h('table')));
   });
 
   it('should return table with rows of cells', () => {
-    const tdast = td(
-      'table',
-      {
-        data: { nodeType: 'table' },
-        position: 'mockTablePosition',
-      },
-      [],
-    );
-    expect(toHtmlTable(tdast)).toEqual(toHtml(h('table')));
-  });
-
-  it('should return table with thead and tbody with rows table cells', () => {
     const tdast = td('table', [
       td('row', ['row0col0', 'row0col1', 'row0col2']),
       td('row', ['row1col0', 'row1col1', 'row1col2']),
@@ -52,7 +41,7 @@ describe(toHtmlTable, () => {
     );
   });
 
-  it('should return table with thead and tbody even if there is only one header row', () => {
+  it('should return table with thead and tbody with rows table cells', () => {
     const tdast = td('table', [
       td('row', [
         td('column', 'col0'),
