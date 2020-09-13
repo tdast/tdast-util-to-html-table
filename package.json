@@ -69,6 +69,10 @@
     "env": [
       "jest"
     ],
-    "prettier": true
+    "prettier": true,
+    "rules": {
+      "capitalized-comments": "off",
+      "padding-line-between-statements": "off"
+    }
   }
 }
